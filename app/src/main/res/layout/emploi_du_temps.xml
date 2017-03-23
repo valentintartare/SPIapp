@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="?attr/colorControlHighlight"
+    android:contextClickable="false">
+
+    <TextView
+        android:text="Votre emploi du temps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="sans-serif"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="normal|bold"
+        android:lineSpacingExtra="8sp" />
+
+    <Button
+        android:text="Intervention de ce jour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boutoncalendar"
+        android:onClick="selectDate"
+        android:background="@android:drawable/button_onoff_indicator_on" />
+
+    <CalendarView
+        android:id="@+id/simpleCalendarView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:longClickable="true"
+        android:weekNumberColor="@android:color/holo_green_light" />
+
+</LinearLayout>

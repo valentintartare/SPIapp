@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SPIapplication</string>
+    <string name="Email">Entrez votre email</string>
+    <string name="mdp">Mot de passe</string>
+</resources>

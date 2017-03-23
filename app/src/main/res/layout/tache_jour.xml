@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="coucou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/datejour"
+        android:layout_weight="0.09"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:textAllCaps="true"
+        android:background="@android:color/holo_green_light"
+        android:choiceMode="singleChoice"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listeVide"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:background="@android:color/holo_green_light" />
+
+    <ListView
+        android:background="@android:color/holo_green_dark"
+        android:id="@+id/listItem"
+        android:layout_width="match_parent"
+        android:layout_height="318dp"
+        android:drawSelectorOnTop="false"
+        android:layout_weight="0.98">
+    </ListView>/>
+
+    <Button
+        android:text="Retour au Calendrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/retourCalendar"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:onClick="retourCalendar" />
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_dark"
+    android:weightSum="1"
+    android:id="@+id/entrer_rapport">
+
+    <TextView
+        android:text="RAPPORT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/votrerapport"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/rapportentry"
+        android:layout_weight="0.92"
+        android:background="@android:color/background_light" />
+
+    <Button
+        android:text="Envoyer le rapport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/retourintervention"
+        android:elevation="1dp"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:onClick="returntache" />
+
+    <Button
+        android:text="Retour au taches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/returntask"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        android:onClick="returntache" />
+
+</LinearLayout>
