@@ -1,10 +1,7 @@
 package com.example.valentin.spiapplication;
 
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,16 +18,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import junit.framework.Test;
-
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     int id=0;
     ArrayList<String> pieceajoute=new ArrayList<String>();
     Date [] tempsTravail=new Date[2];
+    Boolean valide=new Boolean(false);
 
 
     @Override
@@ -52,10 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
         EditText eT=(EditText)findViewById(R.id.emailChamp);
-        if(eT.getText().equals("client")){
-
-        }else {
+        String login=eT.getText()+"";
+        appelRestUser(login);
+        if(valide){
             afficheCalendar();
+        }else{
+            TextView error=(TextView)findViewById(R.id.badconnexion);
+            error.setText("Echec de la connexion, vous n'êtez pas inscrit !\n\n - Si vous êtes un technicien, " +
+                    "contactez un administrateur afin qu'un compte vous soit crée\n- Si vous êtes un client, inscrivez vous sur le site WEB et réessayez");
         }
     }
 
@@ -237,6 +232,37 @@ public class MainActivity extends AppCompatActivity {
         String s = f.format(tdt);
         s=s.substring(9,11)+"H"+s.substring(11,13);
         tV.setText("Temps de travail total : "+s);
+    }
+
+    public void appelRestUser(final String login){
+        final EditText editText=(EditText)findViewById(R.id.emailChamp);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url="http://51.255.131.194/v1/user";
+        boolean res;
+        final test rest=new test();
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                            response=response.substring(1);
+                            response=response.substring(0,response.length()-1);
+                            Gson test=new Gson();
+                            test testage=test.fromJson(response,test.class);
+                            if(testage.getName().compareTo(login)==0){
+                                valide=true;
+                            }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                TextView erreur=(TextView)findViewById(R.id.badconnexion);
+                erreur.setText("Echec de la connexion au serveur REST.");
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }
 
