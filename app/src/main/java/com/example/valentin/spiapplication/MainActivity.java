@@ -26,6 +26,7 @@ import com.google.gson.GsonBuilder;
 import junit.framework.Test;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     String tache;
     int id=0;
     ArrayList<String> pieceajoute=new ArrayList<String>();
+    Date [] tempsTravail=new Date[2];
 
 
     @Override
@@ -108,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
     public void rapportGet() {
         id=3;
         setContentView(R.layout.entrer_rapport);
+        Button bt=(Button)findViewById(R.id.depart);
+        bt.setClickable(false);
         TextView tV3=(TextView)findViewById(R.id.votrerapport);
         tV3.setText("Rapport : "+tache);
         Button button=(Button)findViewById(R.id.retourintervention);
@@ -198,6 +202,41 @@ public class MainActivity extends AppCompatActivity {
                 rapportGet();
         }
 
+    }
+
+    public String getHeure(boolean time){
+        Date d = new Date();
+        if(time)
+            tempsTravail[0]=d;
+        else
+            tempsTravail[1]=d;
+        SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
+        String s = f.format(d);
+        s=s.substring(9,11)+"H"+s.substring(11,13);
+        return s;
+    }
+    public void setHeureArrivee(View view){
+        TextView tV=(TextView)findViewById(R.id.setArrival);
+        Button btdep=(Button)findViewById(R.id.depart);
+        Button bt=(Button)findViewById(R.id.ButArrive);
+        tV.setText("Arrivée : "+getHeure(true));
+        btdep.setClickable(true);
+        bt.setClickable(false);
+    }
+
+    public void setHeureDepart(View view){
+        TextView tV=(TextView)findViewById(R.id.setDeparture);
+        tV.setText("Départ : "+getHeure(false));
+        setTempsTravail();
+    }
+
+    public void setTempsTravail(){
+        TextView tV=(TextView)findViewById(R.id.tdtotal);
+        Date tdt=new Date((tempsTravail[1].getTime()-tempsTravail[0].getTime())-3600000);
+        SimpleDateFormat f = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
+        String s = f.format(tdt);
+        s=s.substring(9,11)+"H"+s.substring(11,13);
+        tV.setText("Temps de travail total : "+s);
     }
 }
 

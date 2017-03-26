@@ -16,22 +16,24 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_marginTop="162dp"
+        android:layout_marginTop="105dp"
         android:id="@+id/Password"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="32dp"
         android:layout_marginEnd="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="45dp"
-        android:layout_marginStart="45dp"
         android:textAlignment="center"
         android:fontFamily="serif"
-        android:background="@android:color/background_light"
-        android:hint="Password" />
+        android:background="@drawable/border"
+        android:hint="Password"
+        android:layout_below="@+id/textView3"
+        android:layout_marginBottom="287dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -45,28 +47,15 @@
         android:layout_alignRight="@+id/Password"
         android:layout_alignEnd="@+id/Password"
         android:hint="Email"
-        android:layout_alignLeft="@+id/Password"
-        android:layout_alignStart="@+id/Password"
         android:textAlignment="center"
         android:fontFamily="serif"
-        android:background="@android:color/background_light" />
-
-    <Button
-        android:text="LOGIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/connexion"
-        android:layout_marginTop="70dp"
-        android:onClick="login"
-        android:background="@android:drawable/button_onoff_indicator_on"
-        style="@android:style/Widget.Holo.Button"
-        android:textColor="@android:color/background_dark"
-        android:fontFamily="serif"
-        android:layout_below="@+id/Password"
-        android:layout_alignLeft="@+id/Password"
-        android:layout_alignStart="@+id/Password"
-        android:layout_alignRight="@+id/Password"
-        android:layout_alignEnd="@+id/Password" />
+        android:background="@drawable/border"
+        android:layout_marginBottom="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_alignBottom="@+id/Password" />
 
     <TextView
         android:text="CONNEXION"
@@ -76,6 +65,32 @@
         android:fontFamily="serif"
         android:textSize="30sp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="LOGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/connexion"
+        android:onClick="login"
+        android:background="@android:drawable/button_onoff_indicator_on"
+        style="@android:style/Widget.Holo.Button"
+        android:textColor="@android:color/background_dark"
+        android:fontFamily="serif"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/emailChamp"
+        android:layout_alignLeft="@+id/Password"
+        android:layout_alignStart="@+id/Password"
+        android:layout_alignRight="@+id/Password"
+        android:layout_alignEnd="@+id/Password" />
+
+    <TextView
+        android:text="                      "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:background="@drawable/line"
+        android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true" />
 
 

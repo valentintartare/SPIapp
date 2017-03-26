@@ -26,13 +26,22 @@
         android:textAlignment="center"
         android:fontFamily="serif" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_weight="0.09"
+        android:background="@drawable/line"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
     <ListView
         android:id="@+id/listItem"
         android:layout_width="match_parent"
         android:layout_height="318dp"
         android:drawSelectorOnTop="false"
-        android:fontFamily="serif"
-        android:layout_weight="0.98">
+        android:layout_weight="0.08"
+        android:clickable="false">
     </ListView>
 
     <Button
