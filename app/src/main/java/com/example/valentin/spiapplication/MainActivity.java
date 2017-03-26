@@ -14,9 +14,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import junit.framework.Test;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,15 +38,14 @@ public class MainActivity extends AppCompatActivity {
     Date date=new Date();
     String tache;
     int id=0;
+    ArrayList<String> pieceajoute=new ArrayList<String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         date.setYear(2000+Integer.parseInt((date.getYear()+"").substring(1,3)));
         super.onCreate(savedInstanceState);
-        //request.getResponse().getJSONObject().getJSONObject("headers").getString("Test");
         setContentView(R.layout.activity_main);
-
     }
 
     public void login(View view){
@@ -100,12 +111,36 @@ public class MainActivity extends AppCompatActivity {
         TextView tV3=(TextView)findViewById(R.id.votrerapport);
         tV3.setText("Rapport : "+tache);
         Button button=(Button)findViewById(R.id.retourintervention);
+        final TextView tV4=(TextView)findViewById(R.id.pieceadd);
+        Button add=(Button)findViewById(R.id.addpiece);
+        final ListView listView=(ListView)findViewById(R.id.liste);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println(tache);
                 tabtaches.remove(tabtaches.indexOf(tache));
                 returntache(new View(MainActivity.this));
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pieceajoute.add(tV4.getText()+"");
+                tV4.setText("");
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
+                        android.R.layout.simple_list_item_1, pieceajoute);
+                listView.setAdapter(adapter);
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pieceajoute.remove(pieceajoute.indexOf(listView.getItemAtPosition(position).toString()));
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
+                        android.R.layout.simple_list_item_1, pieceajoute);
+                listView.setAdapter(adapter);
             }
         });
     }
