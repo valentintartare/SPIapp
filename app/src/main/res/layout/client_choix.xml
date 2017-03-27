@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/blancbackground"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Faites votre choix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:fontFamily="serif"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:background="@drawable/line"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp" />
+
+    <Button
+        android:text="Aller sur le Site WEB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:id="@+id/site"
+        android:layout_below="@+id/textView9"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_alignRight="@+id/textView9"
+        android:layout_alignEnd="@+id/textView9"
+        android:layout_marginBottom="291dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/border2"
+        android:onClick="goOnSite" />
+
+    <Button
+        android:text="PRENDRE UNE PHOTO POUR LE SUPPORT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="97dp"
+        android:id="@+id/photo"
+        android:layout_alignLeft="@+id/site"
+        android:layout_alignStart="@+id/site"
+        android:layout_alignRight="@+id/site"
+        android:layout_alignEnd="@+id/site"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="184dp"
+        android:layout_alignTop="@+id/site"
+        android:background="@drawable/border2"
+        android:onClick="prendrePhoto" />
+
+</RelativeLayout>
