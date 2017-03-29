@@ -24,15 +24,16 @@ public class SetConnexionRest {
     String message;
 
     public void appelRestUser(final String login, final String mdp,final MainActivity main, Response.Listener<String> listener, Response.ErrorListener errorListener){
+        System.setProperty("http.proxyHost","cache.univ-lille1.fr");
+        System.setProperty("http.proxyPort","3128");
         RequestQueue queue = Volley.newRequestQueue(main);
-        String url="http://51.255.131.194/secure/who";
+        String url="http://51.255.131.194/v1/secure/who";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,listener,errorListener) {
-            @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("Authorization", "Basic "+login+":"+mdp);
-                return params;
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Basic " + login + ":" + mdp);
+                return headers;
             }
         };
         // Add the request to the RequestQueue.

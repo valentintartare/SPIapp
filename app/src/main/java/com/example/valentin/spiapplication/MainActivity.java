@@ -37,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*System.setProperty("http.proxyHost","cache.univ-lille1.fr");
+        System.setProperty("http.proxyPort","3128");*/
         date.setYear(2000 + Integer.parseInt((date.getYear() + "").substring(1, 3)));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -76,34 +79,45 @@ public class MainActivity extends AppCompatActivity {
         EditText pass = (EditText) findViewById(R.id.Password);
         final String login = eT.getText() + "";
         final String password = pass.getText() + "";
-        /*TEMPORAIRE*/
-        if(login.equals("tech")){
+        //TEMPORAIRE
+        if (login.equals("tech")) {
             afficheCalendar();
-        }else if(login.equals("client")){
-            id=5;
+        } else if (login.equals("client")) {
+            id = 5;
             setContentView(R.layout.client_choix);
-        }
+        } else {
 
-        /*connexion.appelRestUser(login, password, this, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                response = response.substring(1);
+            connexion.appelRestUser(login, password, this, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    TextView erreur = (TextView) findViewById(R.id.badconnexion);
+                    erreur.setText(response);
+                /*response = response.substring(1);
                 response = response.substring(0, response.length() - 1);
+                    JsonReader jsonReader=new JsonReader();
+                    String[] allJson;
+                    allJson=response.split("\\{");
+                    for(int i=0;i<allJson.length;i++){
+                        System.out.println(allJson[i]);
+                    }
+
+
                 Gson test = new Gson();
                 test testage = test.fromJson(response, test.class);
-                if (testage.getName().compareTo(login) == 0) {
-                afficheCalendar();
+                    if (testage.getName().compareTo(login) == 0) {
+                        afficheCalendar();
+                    }*/
                 }
-            }
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                TextView erreur = (TextView) findViewById(R.id.badconnexion);
-                erreur.setText("Echec de la connexion, vous n'êtez pas inscrit !\n\n - Si vous êtes un technicien, " +
-                        "contactez un administrateur afin qu'un compte vous soit crée\n- Si vous êtes un client, inscrivez vous sur le site WEB et réessayez");
-            }
-        });*/
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    TextView erreur = (TextView) findViewById(R.id.badconnexion);
+                    erreur.setText("Echec de la connexion, vous n'êtez pas inscrit !\n\n - Si vous êtes un technicien, " +
+                            "contactez un administrateur afin qu'un compte vous soit crée\n- Si vous êtes un client, inscrivez vous sur le site WEB et réessayez");
+                }
+            });
+        }
     }
 
     public void selectDate(View view) {
@@ -376,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
         maileur.setVisibility(View.INVISIBLE);
         Button web=(Button)findViewById(R.id.backSite);
         web.setVisibility(View.VISIBLE);
-        connexionWeb("https://www.google.com/gmail/");
+        connexionWeb("https://www.google.fr/gmail/");
     }
 
     public void goOnSite(View view){
@@ -385,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
         web.setVisibility(View.INVISIBLE);
         Button maileur=(Button)findViewById(R.id.mail);
         maileur.setVisibility(View.VISIBLE);
-        connexionWeb("https://www.google.com");
+        connexionWeb("http://51.255.131.194/index.html");
 
     }
 
